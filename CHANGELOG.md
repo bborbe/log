@@ -12,6 +12,7 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 
 - generate mocks
 - go mod update
+- add tests
 
 ## v1.1.0
 
