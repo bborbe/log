@@ -14,6 +14,8 @@ import (
 	"github.com/golang/glog"
 )
 
+//counterfeiter:generate -o mocks/log-loglevel-setter.go --fake-name LogLevelSetter . LogLevelSetter
+
 type LogLevelSetter interface {
 	Set(ctx context.Context, logLevel glog.Level) error
 }
