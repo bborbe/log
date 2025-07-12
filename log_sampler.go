@@ -4,7 +4,7 @@
 
 package log
 
-//counterfeiter:generate -o mocks/sampler.go --fake-name Sampler . Sampler
+//counterfeiter:generate -o mocks/log-sampler.go --fake-name LogSampler . Sampler
 
 // Sampler allow sample glog
 //

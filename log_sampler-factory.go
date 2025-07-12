@@ -13,6 +13,8 @@ var DefaultSamplerFactory SamplerFactory = SamplerFactoryFunc(func() Sampler {
 	}
 })
 
+//counterfeiter:generate -o mocks/log-sampler-factory.go --fake-name LogSamplerFactory . SamplerFactory
+
 // SamplerFactory allow to inject sampler
 type SamplerFactory interface {
 	Sampler() Sampler
