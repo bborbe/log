@@ -52,6 +52,7 @@ func (l *logLevelSetter) Set(ctx context.Context, logLevel glog.Level) error {
 
 	l.lastSetTime = time.Now()
 	l.currentLogLevel = logLevel
+
 	_ = flag.Set("v", strconv.Itoa(int(logLevel)))
 
 	glog.V(l.defaultLoglevel).Infof("set loglevel to %d and reset in %v back to %d", logLevel, l.autoResetDuration, l.defaultLoglevel)

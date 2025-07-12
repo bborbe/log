@@ -4,7 +4,7 @@ go 1.24.4
 
 require (
 	github.com/actgardner/gogen-avro/v9 v9.2.0
-	github.com/bborbe/time v1.16.0
+	github.com/bborbe/time v1.16.1
 	github.com/golang/glog v1.2.5
 	github.com/google/addlicense v1.1.1
 	github.com/gorilla/mux v1.8.1
@@ -49,7 +49,6 @@ require (
 	golang.org/x/telemetry v0.0.0-20250710130107-8d8967aff50b // indirect
 	golang.org/x/text v0.27.0 // indirect
 	golang.org/x/tools v0.35.0 // indirect
-	golang.org/x/tools/go/expect v0.1.1-deprecated // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
