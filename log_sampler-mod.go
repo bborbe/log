@@ -12,6 +12,7 @@ func NewSampleMod(mod uint64) Sampler {
 	return SamplerFunc(func() bool {
 		mux.Lock()
 		defer mux.Unlock()
+		counter++
 		return counter%mod == 0
 	})
 }
