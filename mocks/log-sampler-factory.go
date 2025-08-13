@@ -78,8 +78,6 @@ func (fake *LogSamplerFactory) SamplerReturnsOnCall(i int, result1 log.Sampler) 
 func (fake *LogSamplerFactory) Invocations() map[string][][]interface{} {
 	fake.invocationsMutex.RLock()
 	defer fake.invocationsMutex.RUnlock()
-	fake.samplerMutex.RLock()
-	defer fake.samplerMutex.RUnlock()
 	copiedInvocations := map[string][][]interface{}{}
 	for key, value := range fake.invocations {
 		copiedInvocations[key] = value

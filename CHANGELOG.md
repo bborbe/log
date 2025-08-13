@@ -8,6 +8,15 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.3.0
+
+- Add comprehensive GoDoc documentation to all exported functions and types
+- Enhance README.md with detailed usage examples, API documentation, and status badges
+- Add GitHub Actions CI/CD workflow with automated testing and coverage reporting
+- Improve .gitignore with comprehensive Go development patterns
+- Add status badges for CI, Go Report Card, pkg.go.dev reference, and code coverage
+- Enhance project structure following Go library best practices
+
 ## v1.2.1
 
 - go mod update

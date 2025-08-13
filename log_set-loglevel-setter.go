@@ -16,16 +16,31 @@ import (
 
 //counterfeiter:generate -o mocks/log-loglevel-setter.go --fake-name LogLevelSetter . LogLevelSetter
 
+// LogLevelSetter provides an interface for dynamically changing log levels at runtime.
+// This is particularly useful for debugging production systems without restarts.
 type LogLevelSetter interface {
+	// Set changes the current log level to the specified value.
+	// The implementation may automatically reset to a default level after a timeout.
 	Set(ctx context.Context, logLevel glog.Level) error
 }
 
+// LogLevelSetterFunc is a function type that implements the LogLevelSetter interface.
+// It allows regular functions to be used as log level setters.
 type LogLevelSetterFunc func(ctx context.Context, logLevel glog.Level) error
 
+// Set implements the LogLevelSetter interface by calling the underlying function.
 func (l LogLevelSetterFunc) Set(ctx context.Context, logLevel glog.Level) error {
 	return l(ctx, logLevel)
 }
 
+// NewLogLevelSetter creates a new LogLevelSetter that automatically resets to the
+// default log level after the specified duration.
+//
+// Parameters:
+//   - defaultLoglevel: The log level to reset to after the auto-reset duration
+//   - autoResetDuration: How long to wait before automatically resetting the log level
+//
+// The setter is thread-safe and can handle concurrent log level changes.
 func NewLogLevelSetter(
 	defaultLoglevel glog.Level,
 	autoResetDuration time.Duration,
@@ -55,7 +70,8 @@ func (l *logLevelSetter) Set(ctx context.Context, logLevel glog.Level) error {
 
 	_ = flag.Set("v", strconv.Itoa(int(logLevel)))
 
-	glog.V(l.defaultLoglevel).Infof("set loglevel to %d and reset in %v back to %d", logLevel, l.autoResetDuration, l.defaultLoglevel)
+	glog.V(l.defaultLoglevel).
+		Infof("set loglevel to %d and reset in %v back to %d", logLevel, l.autoResetDuration, l.defaultLoglevel)
 	go func() {
 		ctx, cancel := context.WithTimeout(ctx, l.autoResetDuration)
 		defer cancel()

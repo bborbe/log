@@ -27,11 +27,13 @@ var _ = Describe("Log LogLevelSetter", Serial, func() {
 		It("calls the wrapped function", func() {
 			called := false
 			var receivedLevel glog.Level
-			logLevelSetter = log.LogLevelSetterFunc(func(ctx context.Context, logLevel glog.Level) error {
-				called = true
-				receivedLevel = logLevel
-				return nil
-			})
+			logLevelSetter = log.LogLevelSetterFunc(
+				func(ctx context.Context, logLevel glog.Level) error {
+					called = true
+					receivedLevel = logLevel
+					return nil
+				},
+			)
 
 			err := logLevelSetter.Set(ctx, glog.Level(3))
 			Expect(err).ToNot(HaveOccurred())
@@ -41,9 +43,11 @@ var _ = Describe("Log LogLevelSetter", Serial, func() {
 
 		It("returns error from wrapped function", func() {
 			expectedErr := errors.New("test error")
-			logLevelSetter = log.LogLevelSetterFunc(func(ctx context.Context, logLevel glog.Level) error {
-				return expectedErr
-			})
+			logLevelSetter = log.LogLevelSetterFunc(
+				func(ctx context.Context, logLevel glog.Level) error {
+					return expectedErr
+				},
+			)
 
 			err := logLevelSetter.Set(ctx, glog.Level(1))
 			Expect(err).To(Equal(expectedErr))
