@@ -8,6 +8,13 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.4.0
+
+- Add MemoryMonitor interface for runtime memory usage monitoring
+- Implement memory monitoring with configurable logging intervals
+- Add memory usage logging at start/end with garbage collection metrics
+- Generate MemoryMonitor mock for testing
+
 ## v1.3.0
 
 - Add comprehensive GoDoc documentation to all exported functions and types
