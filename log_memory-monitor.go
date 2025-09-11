@@ -5,6 +5,7 @@
 package log
 
 import (
+	"fmt"
 	"runtime"
 	"sync"
 	"time"
@@ -17,6 +18,7 @@ import (
 // MemoryMonitor provides memory usage monitoring functionality
 type MemoryMonitor interface {
 	LogMemoryUsage(name string)
+	LogMemoryUsagef(format string, args ...interface{})
 	LogMemoryUsageOnStart()
 	LogMemoryUsageOnEnd()
 }
@@ -31,8 +33,9 @@ func NewMemoryMonitor(logInterval time.Duration) MemoryMonitor {
 
 type memoryMonitor struct {
 	logInterval time.Duration
-	lastLogTime time.Time
+
 	mutex       sync.Mutex
+	lastLogTime time.Time
 }
 
 // LogMemoryUsage logs current memory usage if enough time has passed since last log (thread-safe)
@@ -48,63 +51,29 @@ func (m *memoryMonitor) LogMemoryUsage(name string) {
 		m.lastLogTime = now
 
 		// Then log the memory usage
-		var memStats runtime.MemStats
-		runtime.ReadMemStats(&memStats)
-
-		glog.Infof(
-			"MEMORY USAGE - %s, Alloc: %.2f MB, Sys: %.2f MB, HeapInUse: %.2f MB, HeapObjects: %d, NumGC: %d",
-			name,
-			float64(memStats.Alloc)/1024/1024,
-			float64(memStats.Sys)/1024/1024,
-			float64(memStats.HeapInuse)/1024/1024,
-			memStats.HeapObjects,
-			memStats.NumGC,
-		)
+		MemoryStats(name)
 	}
 }
 
-// LogMemoryUsageOnStart logs memory usage at the beginning of backtesting
-func (m *memoryMonitor) LogMemoryUsageOnStart() {
-	glog.Infof("MEMORY MONITOR - Started")
-
-	var memStats runtime.MemStats
-	runtime.ReadMemStats(&memStats)
-	glog.Infof(
-		"MEMORY USAGE - START - Alloc: %.2f MB, Sys: %.2f MB, HeapInUse: %.2f MB, HeapObjects: %d, NumGC: %d",
-		float64(memStats.Alloc)/1024/1024,
-		float64(memStats.Sys)/1024/1024,
-		float64(memStats.HeapInuse)/1024/1024,
-		memStats.HeapObjects,
-		memStats.NumGC,
-	)
+// LogMemoryUsagef logs current memory usage with formatted message if enough time has passed since last log (thread-safe)
+func (m *memoryMonitor) LogMemoryUsagef(format string, args ...interface{}) {
+	name := fmt.Sprintf(format, args...)
+	m.LogMemoryUsage(name)
 }
 
-// LogMemoryUsageOnEnd logs memory usage at the end of backtesting
+// LogMemoryUsageOnStart logs memory usage at the beginning
+func (m *memoryMonitor) LogMemoryUsageOnStart() {
+	glog.Infof("MEMORY MONITOR - Started")
+	MemoryStats("START")
+}
+
+// LogMemoryUsageOnEnd logs memory usage at the end
 func (m *memoryMonitor) LogMemoryUsageOnEnd() {
 	glog.Infof("MEMORY MONITOR - Completed")
-
-	var memStats runtime.MemStats
-	runtime.ReadMemStats(&memStats)
-	glog.Infof(
-		"MEMORY USAGE - END - Alloc: %.2f MB, Sys: %.2f MB, HeapInUse: %.2f MB, HeapObjects: %d, NumGC: %d",
-		float64(memStats.Alloc)/1024/1024,
-		float64(memStats.Sys)/1024/1024,
-		float64(memStats.HeapInuse)/1024/1024,
-		memStats.HeapObjects,
-		memStats.NumGC,
-	)
+	MemoryStats("END")
 
 	// Force garbage collection and log again to see the difference
 	runtime.GC()
 	time.Sleep(100 * time.Millisecond) // Give GC a moment to complete
-
-	runtime.ReadMemStats(&memStats)
-	glog.Infof(
-		"MEMORY USAGE (after GC) - Alloc: %.2f MB, Sys: %.2f MB, HeapInUse: %.2f MB, HeapObjects: %d, NumGC: %d",
-		float64(memStats.Alloc)/1024/1024,
-		float64(memStats.Sys)/1024/1024,
-		float64(memStats.HeapInuse)/1024/1024,
-		memStats.HeapObjects,
-		memStats.NumGC,
-	)
+	MemoryStats("after GC")
 }

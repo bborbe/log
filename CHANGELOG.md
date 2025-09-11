@@ -8,6 +8,13 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.4.1
+
+- Add LogMemoryUsagef method for formatted memory logging
+- Refactor memory stats logging to reduce code duplication
+- Extract MemoryStats utility function to separate file
+- Remove trading-specific comments from memory monitor
+
 ## v1.4.0
 
 - Add MemoryMonitor interface for runtime memory usage monitoring

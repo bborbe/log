@@ -21,6 +21,12 @@ type MemoryMonitor struct {
 	logMemoryUsageOnStartMutex       sync.RWMutex
 	logMemoryUsageOnStartArgsForCall []struct {
 	}
+	LogMemoryUsagefStub        func(string, ...interface{})
+	logMemoryUsagefMutex       sync.RWMutex
+	logMemoryUsagefArgsForCall []struct {
+		arg1 string
+		arg2 []interface{}
+	}
 	invocations      map[string][][]interface{}
 	invocationsMutex sync.RWMutex
 }
@@ -103,6 +109,39 @@ func (fake *MemoryMonitor) LogMemoryUsageOnStartCalls(stub func()) {
 	fake.logMemoryUsageOnStartMutex.Lock()
 	defer fake.logMemoryUsageOnStartMutex.Unlock()
 	fake.LogMemoryUsageOnStartStub = stub
+}
+
+func (fake *MemoryMonitor) LogMemoryUsagef(arg1 string, arg2 ...interface{}) {
+	fake.logMemoryUsagefMutex.Lock()
+	fake.logMemoryUsagefArgsForCall = append(fake.logMemoryUsagefArgsForCall, struct {
+		arg1 string
+		arg2 []interface{}
+	}{arg1, arg2})
+	stub := fake.LogMemoryUsagefStub
+	fake.recordInvocation("LogMemoryUsagef", []interface{}{arg1, arg2})
+	fake.logMemoryUsagefMutex.Unlock()
+	if stub != nil {
+		fake.LogMemoryUsagefStub(arg1, arg2...)
+	}
+}
+
+func (fake *MemoryMonitor) LogMemoryUsagefCallCount() int {
+	fake.logMemoryUsagefMutex.RLock()
+	defer fake.logMemoryUsagefMutex.RUnlock()
+	return len(fake.logMemoryUsagefArgsForCall)
+}
+
+func (fake *MemoryMonitor) LogMemoryUsagefCalls(stub func(string, ...interface{})) {
+	fake.logMemoryUsagefMutex.Lock()
+	defer fake.logMemoryUsagefMutex.Unlock()
+	fake.LogMemoryUsagefStub = stub
+}
+
+func (fake *MemoryMonitor) LogMemoryUsagefArgsForCall(i int) (string, []interface{}) {
+	fake.logMemoryUsagefMutex.RLock()
+	defer fake.logMemoryUsagefMutex.RUnlock()
+	argsForCall := fake.logMemoryUsagefArgsForCall[i]
+	return argsForCall.arg1, argsForCall.arg2
 }
 
 func (fake *MemoryMonitor) Invocations() map[string][][]interface{} {
