@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.4.2
+- Fix integer overflow vulnerability in log level handler (G115)
+- Add golangci-lint configuration and security scanning tools
+- Update Go version from 1.24.5 to 1.25.2
+- Add osv-scanner, gosec, and trivy security checks to Makefile
+- Update CI workflow with Trivy installation
+- Update dependencies and tooling
+
 ## v1.4.1
 
 - Add LogMemoryUsagef method for formatted memory logging

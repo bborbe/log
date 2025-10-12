@@ -36,12 +36,12 @@ import (
 func NewSetLoglevelHandler(ctx context.Context, logLevelSetter LogLevelSetter) http.Handler {
 	return http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
 		vars := mux.Vars(req)
-		level, err := strconv.Atoi(vars["level"])
+		level, err := strconv.ParseInt(vars["level"], 10, 32)
 		if err != nil {
 			fmt.Fprintf(resp, "parse loglevel failed: %v\n", err)
 			return
 		}
-		if err := logLevelSetter.Set(ctx, glog.Level(level)); err != nil {
+		if err := logLevelSetter.Set(ctx, glog.Level(int32(level))); err != nil {
 			fmt.Fprintf(resp, "set loglevel failed: %v\n", err)
 			return
 		}
