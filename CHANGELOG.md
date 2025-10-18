@@ -8,6 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.4.4
+- Update dependencies (github.com/bborbe/time v1.20.0, github.com/securego/gosec/v2 v2.22.10, and 19 indirect dependencies)
+- Add exclusion for golang.org/x/tools v0.38.0 due to counterfeiter compatibility
+
 ## v1.4.3
 - Update Go version from 1.25.2 to 1.25.3
 
