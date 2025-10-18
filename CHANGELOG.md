@@ -8,6 +8,15 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.5.0
+- Add comprehensive package-level documentation (doc.go) with examples and usage guidance
+- Add Ginkgo v2 CLI to development tools for better test execution
+- Enhance README with comprehensive Testing section showing multiple testing approaches
+- Add Full Example section to README demonstrating production-like usage
+- Update CI badge to new GitHub Actions syntax
+- Remove deprecated golint tool (replaced by golangci-lint)
+- Add horizontal rules to README for better visual section separation
+
 ## v1.4.4
 - Update dependencies (github.com/bborbe/time v1.20.0, github.com/securego/gosec/v2 v2.22.10, and 19 indirect dependencies)
 - Add exclusion for golang.org/x/tools v0.38.0 due to counterfeiter compatibility
