@@ -8,6 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.6.0
+
+- update go and deps
+
 ## v1.5.0
 - Add comprehensive package-level documentation (doc.go) with examples and usage guidance
 - Add Ginkgo v2 CLI to development tools for better test execution
