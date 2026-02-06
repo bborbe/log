@@ -37,3 +37,5 @@ Thumbs.db
 # Claude Code specific
 /CLAUDE.md
 /.claude
+/.update-logs/
+/.mcp-*
