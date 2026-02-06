@@ -6,10 +6,9 @@ on:
 
 jobs:
   claude-review:
-    # Filter by PR author - only allow bborbe, openclaw-for-ben, and trusted users
+    # Filter by PR author - only allow bborbe and trusted users
     if: |
       github.event.pull_request.user.login == 'bborbe' ||
-      github.event.pull_request.user.login == 'openclaw-for-ben' ||
       github.event.pull_request.author_association == 'COLLABORATOR' ||
       github.event.pull_request.author_association == 'MEMBER' ||
       github.event.pull_request.author_association == 'OWNER'
