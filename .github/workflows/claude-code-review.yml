@@ -1,23 +1,13 @@
 name: Claude Code Review
 
 on:
-  pull_request:
-    types: [opened, synchronize]
-    # Optional: Only run on specific file changes
-    # paths:
-    #   - "src/**/*.ts"
-    #   - "src/**/*.tsx"
-    #   - "src/**/*.js"
-    #   - "src/**/*.jsx"
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   claude-review:
-    # Filter by PR author - only allow bborbe and trusted users
-    if: |
-      github.event.pull_request.user.login == 'bborbe' ||
-      github.event.pull_request.author_association == 'COLLABORATOR' ||
-      github.event.pull_request.author_association == 'MEMBER' ||
-      github.event.pull_request.author_association == 'OWNER'
+    # Run only when PR is approved
+    if: github.event.review.state == 'approved'
     
     runs-on: ubuntu-latest
     permissions:
@@ -30,7 +20,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Run Claude Code Review
         id: claude-review
