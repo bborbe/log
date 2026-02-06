@@ -18,6 +18,8 @@ import (
 
 // LogLevelSetter provides an interface for dynamically changing log levels at runtime.
 // This is particularly useful for debugging production systems without restarts.
+//
+//nolint:revive // LogLevelSetter is the canonical name; changing it would break the API
 type LogLevelSetter interface {
 	// Set changes the current log level to the specified value.
 	// The implementation may automatically reset to a default level after a timeout.
@@ -26,6 +28,8 @@ type LogLevelSetter interface {
 
 // LogLevelSetterFunc is a function type that implements the LogLevelSetter interface.
 // It allows regular functions to be used as log level setters.
+//
+//nolint:revive // LogLevelSetterFunc matches LogLevelSetter; changing it would break the API
 type LogLevelSetterFunc func(ctx context.Context, logLevel glog.Level) error
 
 // Set implements the LogLevelSetter interface by calling the underlying function.
@@ -76,10 +80,8 @@ func (l *logLevelSetter) Set(ctx context.Context, logLevel glog.Level) error {
 		ctx, cancel := context.WithTimeout(ctx, l.autoResetDuration)
 		defer cancel()
 
-		select {
-		case <-ctx.Done():
-			l.resetLogLevel()
-		}
+		<-ctx.Done()
+		l.resetLogLevel()
 	}()
 	return nil
 }
