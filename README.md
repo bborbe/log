@@ -17,6 +17,10 @@ A Go library providing advanced logging utilities focused on log sampling and dy
 
 ---
 
+## Requirements
+
+- Go 1.25 or later
+
 ## Installation
 
 ```bash
