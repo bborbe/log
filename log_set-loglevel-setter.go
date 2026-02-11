@@ -77,7 +77,9 @@ func (l *logLevelSetter) Set(ctx context.Context, logLevel glog.Level) error {
 	glog.V(l.defaultLoglevel).
 		Infof("set loglevel to %d and reset in %v back to %d", logLevel, l.autoResetDuration, l.defaultLoglevel)
 	go func() {
-		ctx, cancel := context.WithTimeout(ctx, l.autoResetDuration)
+		// Use Background context to ensure reset happens after duration,
+		// regardless of whether the caller's context is cancelled
+		ctx, cancel := context.WithTimeout(context.Background(), l.autoResetDuration)
 		defer cancel()
 
 		<-ctx.Done()
@@ -87,8 +89,11 @@ func (l *logLevelSetter) Set(ctx context.Context, logLevel glog.Level) error {
 }
 
 func (l *logLevelSetter) resetLogLevel() {
+	l.mux.Lock()
+	defer l.mux.Unlock()
+
 	if time.Since(l.lastSetTime) <= l.autoResetDuration {
-		glog.V(l.defaultLoglevel).Infof("time since lastSet is to short => skip reset loglevel")
+		glog.V(l.defaultLoglevel).Infof("time since lastSet is too short => skip reset loglevel")
 		return
 	}
 
