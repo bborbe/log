@@ -7,6 +7,7 @@ package log_test
 import (
 	"context"
 	"errors"
+	"time"
 
 	"github.com/golang/glog"
 	. "github.com/onsi/ginkgo/v2"
@@ -21,6 +22,32 @@ var _ = Describe("Log LogLevelSetter", Serial, func() {
 
 	BeforeEach(func() {
 		ctx = context.Background()
+	})
+
+	Context("NewLogLevelSetter", func() {
+		It("is safe for concurrent use from multiple goroutines", func() {
+			// This test verifies there are no data races when multiple goroutines
+			// call Set concurrently. Run with: go test -race ./...
+			logLevelSetter = log.NewLogLevelSetter(glog.Level(1), 50*time.Millisecond)
+
+			const numGoroutines = 20
+			done := make(chan bool, numGoroutines)
+
+			for i := 0; i < numGoroutines; i++ {
+				go func(level int) {
+					defer func() { done <- true }()
+					_ = logLevelSetter.Set(ctx, glog.Level(level%5))
+				}(i)
+			}
+
+			// Wait for all goroutines to complete
+			for i := 0; i < numGoroutines; i++ {
+				<-done
+			}
+
+			// Wait for resets to trigger
+			time.Sleep(100 * time.Millisecond)
+		})
 	})
 
 	Context("LogLevelSetterFunc", func() {
