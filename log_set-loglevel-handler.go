@@ -45,6 +45,10 @@ func NewSetLoglevelHandler(ctx context.Context, logLevelSetter LogLevelSetter) h
 			fmt.Fprintf(resp, "set loglevel failed: %v\n", err)
 			return
 		}
-		fmt.Fprintf(resp, "set loglevel to %d completed\n", level)
+		fmt.Fprintf(
+			resp,
+			"set loglevel to %d completed\n",
+			level,
+		) // #nosec G705 - level is an integer, not user-controlled string
 	})
 }

@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## Unreleased
+
+- Update Go version to 1.26.0
+- Fix race condition in log level reset mechanism
+- Update dependencies (osv-scanner, gosec, bborbe packages)
+- Add concurrent safety test for log level setter
+- Enable linting in CI checks
+
 ## v1.6.2
 
 - Update Go to 1.25.6
