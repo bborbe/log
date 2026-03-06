@@ -76,9 +76,7 @@ func (l *logLevelSetter) Set(ctx context.Context, logLevel glog.Level) error {
 
 	glog.V(l.defaultLoglevel).
 		Infof("set loglevel to %d and reset in %v back to %d", logLevel, l.autoResetDuration, l.defaultLoglevel)
-	go func() {
-		// Use Background context to ensure reset happens after duration,
-		// regardless of whether the caller's context is cancelled
+	go func() { // #nosec G118 -- intentional: reset must outlive caller's context
 		ctx, cancel := context.WithTimeout(context.Background(), l.autoResetDuration)
 		defer cancel()
 
