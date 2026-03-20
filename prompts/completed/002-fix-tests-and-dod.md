@@ -1,7 +1,12 @@
 ---
-status: approved
+status: completed
+summary: All tests, linting, and precommit checks already pass; no fixes were required, CHANGELOG.md updated with Unreleased section.
+container: log-002-fix-tests-and-dod
+dark-factory-version: v0.59.5-dirty
 created: "2026-03-20T14:24:31Z"
 queued: "2026-03-20T14:24:31Z"
+started: "2026-03-20T14:56:52Z"
+completed: "2026-03-20T15:04:08Z"
 ---
 
 <summary>
