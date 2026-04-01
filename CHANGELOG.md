@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.6.9
+
+- Update dependencies: golangci-lint, osv-scanner, bborbe/* libs
+- Update docker/moby deps: docker v28.5.2, buildkit v0.28.1
+- Add --allow-parallel-runners flag to golangci-lint Makefile target
+- Enable autoRelease in dark-factory config
+- Clean up go.mod: remove exclude blocks, update replace directives
+
 ## v1.6.8
 
 - chore: confirm project health — all tests pass, linting clean, no vulnerabilities found
