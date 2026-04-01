@@ -8,6 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.6.10
+
+- pin charmbracelet/x/cellbuf to v0.0.15 in go.mod
+
 ## v1.6.9
 
 - Update dependencies: golangci-lint, osv-scanner, bborbe/* libs
