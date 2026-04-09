@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.6.11
+
+- bump Go toolchain to 1.26.2
+- update bborbe/* dependencies (time, collection, errors, parse, validation)
+- update opentelemetry to v1.40.0
+- update moby/buildkit, docker/cli, containerd deps
+- add vuln/osv/trivy ignore entries for known indirect CVEs
+
 ## v1.6.10
 
 - pin charmbracelet/x/cellbuf to v0.0.15 in go.mod
