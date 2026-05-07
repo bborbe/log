@@ -1,6 +1,6 @@
 module github.com/bborbe/log
 
-go 1.26.2
+go 1.26.3
 
 require (
 	github.com/bborbe/time v1.25.10
