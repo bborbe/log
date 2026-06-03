@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.6.14
+
+- bump go toolchain to 1.26.4
+- update bborbe/* deps (time, collection, errors, parse, validation)
+- update ginkgo/gomega and golang.org/x/* for security fixes
+- drop standalone errcheck/gosec; move checks into golangci-yml
+- add .maintainer.yaml; set autoRelease=false in dark-factory
+
 ## v1.6.13
 
 - bump go toolchain to 1.26.3
