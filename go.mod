@@ -3,7 +3,7 @@ module github.com/bborbe/log
 go 1.26.4
 
 require (
-	github.com/bborbe/time v1.27.1
+	github.com/bborbe/time v1.27.3
 	github.com/golang/glog v1.2.5
 	github.com/gorilla/mux v1.8.1
 	github.com/onsi/ginkgo/v2 v2.32.0
@@ -12,15 +12,15 @@ require (
 
 require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
-	github.com/bborbe/collection v1.20.12 // indirect
-	github.com/bborbe/errors v1.5.13 // indirect
-	github.com/bborbe/math v1.3.9 // indirect
-	github.com/bborbe/parse v1.10.12 // indirect
-	github.com/bborbe/run v1.9.23 // indirect
-	github.com/bborbe/validation v1.4.13 // indirect
+	github.com/bborbe/collection v1.20.15 // indirect
+	github.com/bborbe/errors v1.5.15 // indirect
+	github.com/bborbe/math v1.3.10 // indirect
+	github.com/bborbe/parse v1.10.13 // indirect
+	github.com/bborbe/run v1.9.28 // indirect
+	github.com/bborbe/validation v1.4.14 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
-	github.com/getsentry/sentry-go v0.46.1 // indirect
+	github.com/getsentry/sentry-go v0.46.2 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-task/slim-sprig/v3 v3.0.0 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
