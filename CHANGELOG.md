@@ -8,6 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## Unreleased
+
+- fix: `memoryMonitor.LogMemoryUsage`, `logLevelSetter.Set` and `logLevelSetter.resetLogLevel` now use `libtime` instead of stdlib `time`, matching the convention `log_sampler-time.go` already documents ("uses github.com/bborbe/time for consistent time handling across the library"). All three drive time-threshold logic — log-if-interval-elapsed and auto-reset-after-duration — which could not be exercised deterministically against a frozen clock. The reset check uses `libtime.Now().Sub(lastSetTime)` rather than `time.Since(lastSetTime)`, so both the write and the read of `lastSetTime` come from the same clock.
+
 ## v1.6.20
 
 - update Go to 1.26.5 and update dependencies

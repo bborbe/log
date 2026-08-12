@@ -11,6 +11,7 @@ import (
 	"sync"
 	"time"
 
+	libtime "github.com/bborbe/time"
 	"github.com/golang/glog"
 )
 
@@ -69,7 +70,7 @@ func (l *logLevelSetter) Set(ctx context.Context, logLevel glog.Level) error {
 	l.mux.Lock()
 	defer l.mux.Unlock()
 
-	l.lastSetTime = time.Now()
+	l.lastSetTime = libtime.Now()
 	l.currentLogLevel = logLevel
 
 	_ = flag.Set("v", strconv.Itoa(int(logLevel)))
@@ -90,7 +91,7 @@ func (l *logLevelSetter) resetLogLevel() {
 	l.mux.Lock()
 	defer l.mux.Unlock()
 
-	if time.Since(l.lastSetTime) <= l.autoResetDuration {
+	if libtime.Now().Sub(l.lastSetTime) <= l.autoResetDuration {
 		glog.V(l.defaultLoglevel).Infof("time since lastSet is too short => skip reset loglevel")
 		return
 	}
