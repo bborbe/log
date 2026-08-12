@@ -8,6 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## Unreleased
+
+- fix: `memoryMonitor.LogMemoryUsage` and `logLevelSetter.Set` now use `libtime.Now()` instead of `time.Now()`, matching the convention `log_sampler-time.go` already documents ("uses github.com/bborbe/time for consistent time handling across the library"). Both sites drive time-threshold logic — log-if-interval-elapsed and auto-reset-after-duration — which could not be exercised deterministically against a frozen clock.
+
 ## v1.6.20
 
 - update Go to 1.26.5 and update dependencies

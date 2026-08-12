@@ -10,6 +10,7 @@ import (
 	"sync"
 	"time"
 
+	libtime "github.com/bborbe/time"
 	"github.com/golang/glog"
 )
 
@@ -43,7 +44,7 @@ func (m *memoryMonitor) LogMemoryUsage(name string) {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
 
-	now := time.Now()
+	now := libtime.Now()
 
 	// Check if enough time has passed since last log
 	if m.lastLogTime.IsZero() || now.Sub(m.lastLogTime) >= m.logInterval {
