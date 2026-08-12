@@ -91,7 +91,7 @@ func (l *logLevelSetter) resetLogLevel() {
 	l.mux.Lock()
 	defer l.mux.Unlock()
 
-	if time.Since(l.lastSetTime) <= l.autoResetDuration {
+	if libtime.Now().Sub(l.lastSetTime) <= l.autoResetDuration {
 		glog.V(l.defaultLoglevel).Infof("time since lastSet is too short => skip reset loglevel")
 		return
 	}
