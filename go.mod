@@ -3,7 +3,7 @@ module github.com/bborbe/log
 go 1.26.6
 
 require (
-	github.com/bborbe/time v1.27.8
+	github.com/bborbe/time v1.27.9
 	github.com/golang/glog v1.2.5
 	github.com/gorilla/mux v1.8.1
 	github.com/onsi/ginkgo/v2 v2.32.0
@@ -12,12 +12,12 @@ require (
 
 require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
-	github.com/bborbe/collection v1.20.20 // indirect
-	github.com/bborbe/errors v1.5.17 // indirect
-	github.com/bborbe/math v1.3.18 // indirect
-	github.com/bborbe/parse v1.10.19 // indirect
-	github.com/bborbe/run v1.9.34 // indirect
-	github.com/bborbe/validation v1.4.18 // indirect
+	github.com/bborbe/collection v1.20.22 // indirect
+	github.com/bborbe/errors v1.5.18 // indirect
+	github.com/bborbe/math v1.3.20 // indirect
+	github.com/bborbe/parse v1.10.20 // indirect
+	github.com/bborbe/run v1.9.35 // indirect
+	github.com/bborbe/validation v1.4.19 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/getsentry/sentry-go v0.48.0 // indirect
@@ -31,7 +31,7 @@ require (
 	github.com/prometheus/client_model v0.6.2 // indirect
 	github.com/prometheus/common v0.70.1 // indirect
 	github.com/prometheus/procfs v0.21.1 // indirect
-	go.yaml.in/yaml/v3 v3.0.4 // indirect
+	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/mod v0.40.0 // indirect
 	golang.org/x/net v0.58.0 // indirect
 	golang.org/x/sync v0.22.0 // indirect
