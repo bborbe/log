@@ -12,12 +12,12 @@ require (
 
 require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
-	github.com/bborbe/collection v1.20.26 // indirect
+	github.com/bborbe/collection v1.20.27 // indirect
 	github.com/bborbe/errors v1.6.1 // indirect
 	github.com/bborbe/math v1.4.8 // indirect
 	github.com/bborbe/parse v1.11.4 // indirect
 	github.com/bborbe/run v1.10.3 // indirect
-	github.com/bborbe/validation v1.5.1 // indirect
+	github.com/bborbe/validation v1.5.2 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/getsentry/sentry-go v0.49.0 // indirect
