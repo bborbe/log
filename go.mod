@@ -1,13 +1,13 @@
 module github.com/bborbe/log
 
-go 1.27.1
+go 1.27.2
 
 require (
 	github.com/bborbe/time v1.27.14
 	github.com/golang/glog v1.2.5
 	github.com/gorilla/mux v1.8.1
-	github.com/onsi/ginkgo/v2 v2.32.1
-	github.com/onsi/gomega v1.43.0
+	github.com/onsi/ginkgo/v2 v2.33.0
+	github.com/onsi/gomega v1.44.0
 )
 
 require (

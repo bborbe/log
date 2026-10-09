@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.7.2
+
+- Bump Go to 1.27.2
+- Update ginkgo to v2.33.0 and gomega to v1.44.0
+- Bump golangci-lint to v2.14.0
+- Fix do-not-merge check by parsing labels with jq
+- Add unfinished-pipeline merge gate and .reviewignore
+
 ## v1.7.1
 
 - chore: update go module dependencies
