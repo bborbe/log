@@ -8,6 +8,11 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## Unreleased
+
+- chore: remove 7 stale vulnerability ignore IDs
+- ci: install Trivy from a pinned, checksum-verified release tarball so the test job stops failing on the removed `apt-key` helper
+
 ## v1.7.9
 
 - chore: update Go to 1.27.4 and github.com/bborbe/time to v1.27.28, github.com/onsi/ginkgo/v2 to v2.34.0
